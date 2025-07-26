@@ -1,0 +1,65 @@
+{
+  "version": 1,
+  "author": "Anonymous maker",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-breadboard-half", "id": "bb1", "top": 54.6, "left": 22, "attrs": {} },
+    { "type": "board-esp32-devkit-v1", "id": "esp", "top": 48, "left": -148.76, "attrs": {} },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": 205,
+      "left": 143.15,
+      "rotate": 270,
+      "attrs": { "value": "10000" }
+    },
+    {
+      "type": "wokwi-dht22",
+      "id": "dht1",
+      "top": -9.3,
+      "left": 81,
+      "attrs": { "temperature": "22.1" }
+    },
+    {
+      "type": "board-ssd1306",
+      "id": "oled1",
+      "top": 281.54,
+      "left": 48.23,
+      "attrs": { "i2cAddress": "0x3c" }
+    },
+    {
+      "type": "wokwi-buzzer",
+      "id": "bz1",
+      "top": 31.2,
+      "left": 213,
+      "attrs": { "volume": "0.1" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "bb1:6t.b", "esp:CLK", "green", [ "v0" ] ],
+    [ "dht1:GND", "esp:D0", "black", [ "v0" ] ],
+    [ "dht1:SDA", "esp:4", "green", [ "v0" ] ],
+    [ "dht1:GND", "esp:GND.1", "black", [ "v0" ] ],
+    [ "dht1:VCC", "esp:3V3", "red", [ "v0" ] ],
+    [ "dht1:SDA", "esp:D4", "green", [ "v0" ] ],
+    [ "bb1:bp.10", "esp:3V3", "red", [ "v-0.9", "h-180.8", "v-38.4" ] ],
+    [ "bb1:14t.e", "dht1:SDA", "green", [ "h-48", "v0", "h-19.3" ] ],
+    [ "oled1:GND", "esp:GND.1", "black", [ "v-19.2", "h-105.6", "v-74.08" ] ],
+    [ "oled1:VCC", "esp:3V3", "red", [ "v0" ] ],
+    [ "oled1:SDA", "esp:D21", "green", [ "v-163.2", "h-143.93", "v-16.48" ] ],
+    [ "oled1:SCL", "esp:D22", "green", [ "v-9.6", "h-95.7", "v-198.88" ] ],
+    [ "bz1:2", "esp:D12", "red", [ "v0", "h124.4", "v-134.4", "h-547.2", "v201.6" ] ],
+    [ "bz1:1", "esp:GND.2", "black", [ "v48", "h153.6", "v-201.6", "h-585.6", "v19.2" ] ],
+    [ "dht1:VCC", "bb1:6t.a", "", [ "$bb" ] ],
+    [ "dht1:SDA", "bb1:7t.a", "", [ "$bb" ] ],
+    [ "dht1:NC", "bb1:8t.a", "", [ "$bb" ] ],
+    [ "dht1:GND", "bb1:9t.a", "", [ "$bb" ] ],
+    [ "bz1:1", "bb1:21t.b", "", [ "$bb" ] ],
+    [ "bz1:2", "bb1:22t.b", "", [ "$bb" ] ],
+    [ "r1:1", "bb1:bp.11", "", [ "$bb" ] ],
+    [ "r1:2", "bb1:14b.g", "", [ "$bb" ] ]
+  ],
+  "dependencies": {}
+}
